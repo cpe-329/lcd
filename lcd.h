@@ -9,7 +9,7 @@
 #define RS  0b00010000  // P4.4 aka D/I
 #define RW  0b00100000  // P4.5
 #define EN  0b01000000  // P4.6
-#define LCD_DB_PINS (DB7 | BD6 | DB5 | DB4)
+#define LCD_DB_PINS (DB7 | DB6 | DB5 | DB4)
 #define LCD_PINS_MASK (LCD_DB_PINS | EN | RW | RS)  // P4.0-4.6
 
 #define CMD_CLR_DISP 0x01

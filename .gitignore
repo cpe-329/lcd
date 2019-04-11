@@ -68,3 +68,4 @@ system_msp432p401r.c
 Debug/*
 Release/*
 
+/Debug/

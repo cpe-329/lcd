@@ -107,6 +107,35 @@ inline void delay_ms(unsigned int msec, const unsigned int freq){
     }
 }
 
+inline void delay_ms_auto(unsigned int msec){
+    unsigned int freq;
+    switch(CS->CTL0){
+     case(CS_CTL0_DCORSEL_0):
+         freq =FREQ_1_5_MHZ;
+         break;
+     case(CS_CTL0_DCORSEL_1):
+         freq =FREQ_3_MHZ;
+         break;
+     case(CS_CTL0_DCORSEL_2):
+         freq =FREQ_6_MHZ;
+         break;
+     case(CS_CTL0_DCORSEL_3):
+         freq =FREQ_12_MHZ;
+         break;
+     case(CS_CTL0_DCORSEL_4):
+        freq =FREQ_24_MHZ;
+         break;
+     case(CS_CTL0_DCORSEL_5):
+        freq =FREQ_48_MHZ;
+         break;
+     default:
+         // Default to 1.5MHz
+         freq = FREQ_1_5_MHZ;
+    while (msec-- > 0){
+        delay_one_ms(freq);
+    }
+}
+
 // Fine tuned 1 us delay only to be used at 48MHz
 // Not claibrated for other frequencies
 inline void delay_one_us_at_48(){

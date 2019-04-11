@@ -2,6 +2,7 @@
 
 #include "watchdog.h"
 #include "lcd.h"
+#include "led.h"
 #include "delay.h"
 /**
  * main.c
@@ -20,5 +21,5 @@ void main(void)
     lcd_write('e');
     lcd_write('l');
     lcd_write('l');
-    lcd_write1('o');
+    lcd_write('o');
 }

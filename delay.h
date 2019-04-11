@@ -27,6 +27,8 @@ inline delay_one_ms(const unsigned int freq);
 // Delay for the given number of ms at the given frequency
 inline void delay_ms(unsigned int msec, unsigned int freq);
 
+inline void delay_ms_auto(unsigned int msec);
+
 // Fine tuned 1 us delay only to be used at 48MHz
 inline void delay_one_us_at_48();
 

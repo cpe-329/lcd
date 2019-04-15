@@ -1,36 +1,60 @@
 #ifndef LCD_H_
 #define LCD_H_
 
+//  1   2  3   4   5     6    7   8   9  10   11   12  13    14   15   16 
+// VSS VDD V0  RS  RW    E   DB0 DB1 DB2 DB3  DB4  DB5  DB6  DB7 LED+ LED- 
+// GND 3V3    P4.4 P4.5 P4.6                 P4.0 P4.1 P4.2 P4.3  5V  GND
 
-#define DB4 0b00000001  // P4.0
-#define DB5 0b00000010  // P4.1
-#define DB6 0b00000100  // P4.2
-#define DB7 0b00001000  // P4.3
-#define RS  0b00010000  // P4.4 aka D/I
-#define RW  0b00100000  // P4.5
-#define EN  0b01000000  // P4.6
+#define P4_0 0b00000001
+#define P4_1 0b00000010  // P4.1
+#define P4_2 0b00000100  // P4.2
+#define P4_3 0b00001000  // P4.3
+#define P4_4 0b00010000  // P4.4 aka Data/Instr
+#define P4_5 0b00100000  // P4.5
+#define P4_6 0b01000000  // P4.6
+
+#define DB4 P4_0  // P4.0
+#define DB5 P4_1  // P4.1
+#define DB6 P4_2  // P4.2
+#define DB7 P4_3  // P4.3
+#define RS  P4_4  // P4.4 aka Data/Instr
+#define RW  P4_5  // P4.5
+#define EN  P4_6  // P4.6
+
 #define LCD_DB_PINS (DB7 | DB6 | DB5 | DB4)
-#define LCD_PINS_MASK (LCD_DB_PINS | EN | RW | RS)  // P4.0-4.6
+#define LCD_PINS_MASK (EN | RW | RS| LCD_DB_PINS)  // P4.0-4.6
 
-#define CMD_CLR_DISP 0x01
-#define CMD_HOME 0x02  //  Send cursor to home position
 //  lcd Mode options
-#define CMD_MODE_8_BIT 0x30  // 0b00110000
-#define CMD_MODE_4_BIT 
-#define CMD_MODE_2_LINE 0x28
-#define CMD_CURSOR_ON 0x0A
-#define CMD_CURSOR_BLINK 0x09
-#define CMD_DISPLAY_ON 0x0C
-#define CMD_CURSOR_RIGHT 0x06  //  Cursor moves to right
-#define CMD_CURSOR_LEFT 0x04  //  Cursor moves to left
-#define CMD_SET_CURSOR 0x80  //  Set cursor position to SET_CURSOR ADDRESS
+#define CMD_STARTUP       (0b00100000)
+#define CMD_SET_2L_4B     (0b11000000)
+#define CMD_DISP_CTL_OFF  (0b00001000)
+#define CMD_DISP_CTL_D    (0b00001100)
+#define CMD_DISP_CTL_DC   (0b00001110)
+#define CMD_DISP_CTL_DCB  (0b00001111)
+#define CMD_DISP_CTL_INIT (0b00001100) 
+#define CMD_DISP_CLR      (0b00010000)
+#define CMD_ENTRY_MODE    (0b00000110)
+#define CMD_HOME          (0b00000010)
 
 void lcd_init();
 void lcd_command(char i);
 void lcd_write(char i);
-static void Nybble();
 
-void lcd_init_8bit(void); // TODO: remove this
+inline void lcd_home();
+inline void lcd_clear();
+inline void lcd_disp_on();
+inline void lcd_disp_off();
+inline void lcd_blink_on();
+inline void lcd_blink_off();
+inline void lcd_cursor_on();
+inline void lcd_cursor_off();
 
+static inline void Nybble();
+static inline void lcd_db_write(unsigned char i);
+
+void inline set_RS();
+void inline clear_RS();
+void inline set_RW();
+void inline clear_RW();
 
 #endif /* LCD_H_ */

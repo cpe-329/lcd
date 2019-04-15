@@ -135,9 +135,8 @@ inline void delay_ms_auto(unsigned int msec){
     //      // Default to 1.5MHz
     //      freq = FREQ_1_5_MHZ;
     // Option 3
-    while (msec-- > 0){
-        delay_one_ms(CS->CTL0);
-    }
+    unsigned int freq = CS->CTL0;
+    delay_ms(msec, freq);
 }
 
 // Fine tuned 1 us delay only to be used at 48MHz

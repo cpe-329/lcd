@@ -14,6 +14,13 @@ inline void toggle_led1(void){
     P1->OUT ^= LED1_STATE_ON;  // XOR LED1 state to toggle
 }
 
+inline void led1_on(void){
+    P1->OUT |= LED1_STATE_ON;
+}
+
+inline void led1_off(void){
+    P1->OUT &= ~LED1_STATE_ON;
+}
 
 // Setup RGB LED
 void init_led_rgb(void){

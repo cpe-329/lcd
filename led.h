@@ -21,6 +21,9 @@ inline void init_led1(void);
 // Toggle LED1
 inline void toggle_led1(void);
 
+inline void led1_on(void);
+inline void led1_off(void);
+
 // Setup RGB LED
 void init_led_rgb(void);
 

@@ -31,10 +31,16 @@
 #define CMD_DISP_CTL_D    (0b00001100)
 #define CMD_DISP_CTL_DC   (0b00001110)
 #define CMD_DISP_CTL_DCB  (0b00001111)
-#define CMD_DISP_CTL_INIT (0b00001100) 
-#define CMD_DISP_CLR      (0b00010000)
+#define CMD_DISP_CTL_INIT CMD_DISP_CTL_D 
+#define CMD_DISP_CLR      (0b00000001)
 #define CMD_ENTRY_MODE    (0b00000110)
 #define CMD_HOME          (0b00000010)
+
+// Require wrappers
+void Clear_LCD();  // clear the display
+void Home_LCD();  // move the cursor to the top left of the LCD
+void Write_char_LCD(unsigned char i);  // write a character on the LCD
+
 
 void lcd_init();
 void lcd_command(char i);

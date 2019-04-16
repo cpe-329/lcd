@@ -14,37 +14,12 @@ void main(void)
 	set_dco(FREQ);
 	init_led1();
 
-    led1_on();
-	lcd_init();
+    led1_on();  // Turn on LED
 
-    // lcd_cursor_off();
-    lcd_blink_on();
+	lcd_init();  // Initialize the LCD
+    lcd_blink_on();  // Turn on blinking cursor
 
-	lcd_write('A');
+	Write_char_LCD('A');  // Write character to LCD
     
-    delay_ms(1000, FREQ);
-
-    lcd_write(' ');
-    lcd_write('H');
-    lcd_write('e');
-    lcd_write('l');
-    lcd_write('l');
-    lcd_write('o');
-
-    delay_ms(1000, FREQ);
-    lcd_blink_off();
-    lcd_clear();
-
-    lcd_write('d');
-    lcd_write('o');
-    lcd_write('n');
-    lcd_write('u');
-    lcd_write('t');
-    lcd_write('s');
-
-    delay_ms(1000, FREQ);
-
-    // lcd_disp_off();
-
-    led1_off();
+    led1_off();  // Turn off LED
 }
